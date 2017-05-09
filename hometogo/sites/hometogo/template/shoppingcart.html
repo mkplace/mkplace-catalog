@@ -1,0 +1,301 @@
+{% extends 'layout/shoppingcart.html' %}
+
+{% block main_content %}
+<section ng-controller="shoppingcart">
+	<div class="container">
+		<h1 class="shopping-cart-resume-title">Resumo do carrinho</h1>
+		<div class="shopping-cart-resume">
+			<div class="content">
+				<div class="row">
+					<div class="col-sm-2 resume-value">
+						<strong>Qtd. produtos</strong>
+						<span class="value"></span>
+					</div>
+					<div class="col-sm-3 resume-value">
+						<strong>Entrega para</strong>
+						<span class="value"></span>
+					</div>
+					<div class="col-sm-2 resume-value">
+						<strong>Total frete</strong>
+						<span class="value">R$ 0,00</span>
+					</div>
+					<div class="col-sm-2 resume-value">
+						<strong>Descontos</strong>
+						<span class="value">R$ 0,00</span>
+					</div>
+					<div class="col-sm-3 resume-value">
+						<strong>Total a pagar</strong>
+						<span class="value">R$ 6.700,98</span>
+					</div>
+				</div>
+				<hr />
+			</div>
+			<div class="items" style="overflow-x:hidden">
+				<div class="content">
+					<table class="table shoppingcart-table summary">
+						<thead>
+							<tr>
+								<th>Ítem ([[shoppingcart.items.length]])</th>
+								<th width="130" styfle="text-align:center;">Quantidade</th>
+								<th width="200" style="text-align:center">Prazo e frete</th>
+								<th width="140" style="text-align:center">Valor unitário</th>
+								<th width="170" style="text-align:center">Valor total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<img src="https://static.hometogo.com.br/images/1/189/direct-18902_135x135.jpg" alt="Xperia XA Ultra, Câmera Selfie 16MP, Câmera traseira de 21.5MP, Dual Sim, Tela Full HD de 6&quot;, 16GB, Processador octa core | Branco" width="60" style="margin-right:10px">
+									Xperia XA Ultra, Câmera Selfie 16MP, Câmera traseira de 21.5MP, Dual Sim, Tela Full HD de 6&quot;, 16GB, Processador octa core | Branco
+								</td>
+								<td align="center" style="line-height:60px">
+									<strong>1</strong>
+								</td>
+								<td align="center" style="line-height:60px">
+									---
+								</td>
+								<td align="center" style="line-height:20px">
+									<s>R$ 1.799,99</s><br/>
+									<strong>R$ 1.799,99</strong>
+								</td>
+								<td align="center" style="line-height:60px"><strong class="primary-color">R$ 1.799,99</strong></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="show-items show-ac">Mostrar itens do carrinho</div>
+				<div class="show-items hide-ac">Esconder itens do carrinho</div>
+			</div>
+		</div>
+
+		<div class="shopping-cart-wizard no-transition" id="cart-method">
+			<div class="content">
+				<h1 class="subtitle-cart strong text-center"><strong>Carrinho de Compras <img src="/assets/img/cart_big.png"></strong></h1>
+				<hr/>
+				<h3 class="subtitle-cart text-center hide"><strong>APROVEITE TAMBÉM ESSAS OFERTAS</strong> | HOME TO GO</h3>
+				<div class="category-listing hide" style="margin:auto">
+					<div class="row">
+						<div class="product-list">
+							<div class="col-md-4">
+								<div style="height:345px" class="product-thumb">
+									<div class="image">
+										<div class="overlay"></div>
+										<img src="https://static.hometogo.com.br/images/1/148/direct-14849_220x220.jpg" class="first-image" style="display:block">
+										<img src="https://static.hometogo.com.br/images/1/148/direct-14850_220x220.jpg" class="sec-image" style="display:none">
+										<div class="product-actions">
+											<a href="javascript:" mkplace-buy="{&quot;idsku&quot; : 28288, &quot;idseller&quot; : 346}" title="Adicionar no carrinho" class="add-to-cart no-follow"></a>
+											<a href="javascript:" title="Adicionar á lista de desejos" mkplace-add-wishlist="28288" class="add-to-list page"></a>
+											<a href="/cooktop-a-gas-brastemp-ative-4-bocas-bivolt-p28288" title="Ver detalhes" class="details"></a>
+											<a href="javascript:" title="Adicionar e ir para o carrinho" mkplace-buy="{&quot;idsku&quot; : 28288, &quot;idseller&quot; : 346}" class="addgo-to-cart active" style=""></a>
+										</div>
+										<button type="button" class="carousel-add-cart-btn"></button>
+									</div>
+									<div class="info">
+										<span class="manufacturer-name">Brastemp</span>
+										<small title="Cooktop à Gás Brastemp Ative! 4 Bocas BIVOLT">Cooktop à Gás Brastemp Ative! 4 Bocas BIVOLT</small>
+										<small class="price">
+											<s>
+												<script type="text/javascript">mkplace.product.getSellInfo("listprice",28288);</script><span mkplace-show-price="28288" mkplace-show-price-type="listprice">R$ 625,00</span>
+											</s>
+											-
+											<strong>
+												<script type="text/javascript">mkplace.product.getSellInfo("sellprice",28288);</script><span mkplace-show-price="28288" mkplace-show-price-type="sellprice">R$ 450,00</span>
+											</strong>
+										</small>
+										<small class="price">10X de <strong>R$ 45,00</strong></small>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="background-color:#f3f3f3">
+					<div class="col-md-12">
+						<div class="shopping-cart-shipping" style="margin-bottom:0">
+							<div class="row">
+								<div class="col-sm-2" style="width:165px">
+									<a href="#" class="primary-color underline">Não sei meu CEP</a>
+								</div>
+								<div class="col-sm-3">
+									<form action="">
+										<span class="cep-field first"><input type="text" name="zipcode[0]" value=""><input type="text" name="zipcode[1]" value="" style="width:70px!important"></span>
+									</form>
+								</div>
+								<div class="col-sm-5" style="margin-top:10px">
+									<p>Obrigatório inserir o CEP de entrega para prosseguir a compra</p>
+								</div>
+								<div class="col-sm-2" style="right:-65px">
+									<button type="submit" class="btn btn-primary set-zipcode-shoppingcart" style="font-weight:bold;font-size:16px;width:141px">Calcular CEP</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-10" style="background-color:white">
+						<table class="table shoppingcart-table" style="background-color:#fff">
+							<thead>
+								<tr>
+									<th style="border:none!important">Itens ([[shoppingcart.items.length]])</th>
+									<th width="130" style="padding-left:20px;border:none!important">Quantidade</th>
+									<th width="230" style="text-align:center;border:none!important">Prazo/frete</th>
+									<th width="230" style="text-align:center;border:none!important">Valor unitário</th>
+									<th style="text-align:center;border:none!important" width="185">Valor total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in shoppingcart.items">
+									<td width="450">
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="">
+                                                    <img src="[[item.sku.image_path]]" alt="" style="width:130px;height:130 px"/>
+												</a>
+											</div>
+											<div class="col-sm-6">
+												<div class="product-name-box">
+													<div class="cart-item-name">[[item.sku.name]]</div>
+													<div class="primary-color">[[item.sku.id]]</div>
+												</div>
+												<div class="seller-info">
+													Vendido e Entregue por<br>
+													<a class="primary-color" href="/busca?idseller=346"><strong>[[item.offer.seller.name]]</strong></a>
+												</div>
+											</div>
+										</div>
+									</td>
+									<td align="center">
+										<div class="item-qty">
+											<a class="input-qty-left" ng-click="shoppingcart.item_quantity_update(item.offer.id, item.quantity - 1)"></a>
+											<div class="input-qty">
+												<input type="text" name="name" readonly ng-model="item.quantity">
+												<a href="#" class="remove-cartitem" ng-click="shoppingcart.item_quantity_update(item.offer.id, 0)"></a>
+											</div>
+											<a class="input-qty-right" ng-click="shoppingcart.item_quantity_update(item.offer.id, item.quantity + 1)" style="margin-right:10px"></a>
+										</div>
+									</td>
+									<td style="padding-top:30px;text-align:center" class="cart-value"></td>
+									<td style="padding-top:30px;text-align:center" class="cart-value">
+										<div style="margin-top:40px">
+											<s class="primary-color" style="font-family:'gothambook';font-size:10px">R$ </s><br>
+											<strong class="primary-color">R$ </strong>
+										</div>
+									</td>
+									<td align="center">
+										<div style="margin-top:54px">
+											<strong class="primary-color cart-value">R$ </strong>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-md-2">
+						<div class="shopping-cart-shipping" style="margin-top:-20px"></div>
+						<div class="subtotal-right text-center" style="font-size:25px;font-family:gothamlight;margin-right:15px">
+							<strong>Subtotal<strong>
+							<div class="primary-color">R$ </div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-12">
+							<div class="shopping-cart-shipping" style="margin-bottom:0">
+								<div class="row">
+									<div class="col-md-2" style="width:165px">
+										<a href="#" class="primary-color underline">Inserir Cupom</a>
+									</div>
+									<div class="col-md-1" style="width:170px">
+										<span class="cep-field first">
+										<input type="text" name="zipcode[0]" value="">
+										</span>
+									</div>
+									<div class="col-md-7" style="margin-top:10px;width:580px">
+										<p>Caso não possua um cupom de desconto extra, siga direto para "Finalizar Compra"</p>
+									</div>
+									<div class="col-md-2" style="right:-25px">
+										<button type="submit" class="btn btn-primary set-zipcode-shoppingcart" style="font-weight:bold;font-size:16px;width:141px">Utilizar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="pull-right text-center">
+					<div class="text-total-cart" style="background-color:#f3f3f3;margin-bottom:10px;font-size:25px;font-family:gothamlight;padding-top:60px">
+						<small>Valor Total</small><br>
+						<span class="primary-color">R$ </span>
+					</div>
+					<button type="submit" class="btn btn-primary"  style="font-weight:bold;font-size:16px;width:180px;color:yellow!important">Finalizar Compra</button>
+				</div>
+				<div class="row">
+					<div class="col-sm-12"></div>
+				</div>
+			</div>
+		</div>
+		<div class="shopping-cart-wizard">
+			<div class="content">
+			    <h1 class="subtitle-cart strong text-center"><strong>Finalizar pedido <img src="/assets/img/cart_big.png"></strong></h1>
+				<hr/>
+				<ul class="wizard-step hide" style="margin:3px auto 20px">
+					<li class="active"><span>1</span> <strong>Endereço</strong></li>
+					<li class="goto-payment-method"><span>2</span> <strong>Pagamento</strong></li>
+				</ul>
+				<div class="row payment-method">
+					<div class="col-sm-12">
+						<h3>Endereço de entrega</h3>
+					</div>
+					<div class="col-sm-5 addressbox text-left">
+						<div class="pull-left">
+							<label class="custom-select shoppingcart-validate-month">
+							<select class="form-control" mk-change-delivery-address>
+                                <option value="">Selecione</option>
+                                <option value="" >address - number, complement</option>
+                            </select>
+						</div>
+						<input type="submit" class="pull-left" data-toggle="modal" data-target="#add-address" style="margin:11px 11px 0;padding:7px;border:0;background-color:#ff0054;color:#fff;font-size:17px" value="Adicionar">
+						</label>
+						<div class="pull-left">
+							<input type="checkbox" name="end_cobranca" id="use_deliveryaddress" checked style="float:left;margin-right:5px" />
+							<label for="end_cobranca">
+							<small>Utilizar mesmo endereço para cobrança</small>
+							</label>
+						</div>
+					</div>
+					<div class="col-sm-3 addressbox hide text-left">
+						<span>Destinatário:</span> <span class="primary-color" id="shipping-contact"></span>
+					</div>
+					<div class="col-sm-4 addressbox hide text-left">
+						<span>Endereço:</span> <span class="primary-color" id="shipping-address-full"></span>
+					</div>
+				</div>
+				<br>
+				<div class="row payment-method hide billing-address-box">
+					<div class="col-sm-12">
+						<h3>Endereço de cobrança</h3>
+					</div>
+					<div class="col-sm-5 addressbox text-left">
+						<label class="custom-select shoppingcart-validate-month">
+							<select class="" id="billing-address">
+								<option value="">Escolha um endereço</option>
+							</select>
+						</label>
+					</div>
+					<div class="col-sm-3 addressbox text-left">
+						<span>Destinatário:</span> <span class="primary-color" id="billing-contact"></span>
+					</div>
+					<div class="col-sm-4 addressbox text-left">
+						<span>Endereço:</span> <span class="primary-color" id="billing-address-full"></span>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-sm-9"></div>
+					<div class="col-sm-3">
+						<div class="primary-bg continue-buy">
+							<a href="javascript:" class="goto-payment-method">Ir para pagamento</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

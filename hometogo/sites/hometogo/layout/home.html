@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html ng-app="catalog" ng-controller="main">
+	<head>
+		<meta charset=utf-8>
+		<title>Home To Go</title>
+		{% include 'components/tag-head.html' %}
+	</head>
+	<body ng-controller="custom">
+		{% include 'components/header.html' %}
+
+	    {% block main_content %}{% endblock %}
+
+		{% include 'components/footer.html' %}
+	</body>
+</html>

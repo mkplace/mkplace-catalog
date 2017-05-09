@@ -1,0 +1,35 @@
+<div class="modal fade" id="loginRequestModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:440px">
+        <button type="button" class="close btn-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div class="form_signup">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 style="color:#ef818e; margin-bottom:30px;">Preencha os campos<br>para acessar a loja</h1>
+                </div>
+                <div class="col-sm-12">
+                    <input type="hidden" name="next" value="{{request.args.get('next','')}}">
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <input ng-model="customer.auth_form.login" style="border:1px solid #ef818e;border-radius:2px;color: black !important;" class="input-token form-control" placeholder="Email / CPF" autocomplete="off">
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <input ng-model="customer.auth_form.password" type="password" style="border:1px solid #ef818e;border-radius:2px;color: black !important;" class="input-token form-control" placeholder="Senha" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group col-md-12 text-center">
+                    <button ng-click="customer.auth(customer.auth_form.login, customer.auth_form.password)" class="col-md-offset-3 col-md-6" style="background-color:#ef818e;border-radius:3px" data-next="address">Entrar</button>
+                </div>
+                <div class="col-md-12 input login-link">
+                    <label class="btn-keep-connected pull-left">
+                        <div class="checkoption"></div>
+                        Permanecer conectado
+                    </label>
+                    <label class="btn-recovery-access pull-right text-right">Esqueceu sua senha?</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

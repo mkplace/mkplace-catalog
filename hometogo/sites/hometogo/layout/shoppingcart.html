@@ -1,0 +1,24 @@
+{% set shoppingcart = this %}
+
+<!DOCTYPE html>
+<html ng-app="catalog" ng-controller="main">
+	<head>
+		<meta charset=utf-8>
+		<title>Home To Go - Carrinho</title>
+		{% include 'components/tag-head.html' %}
+	</head>
+	<body ng-controller="custom">
+
+    <!-- logo e menu -->
+    {% include 'components/header.html' %}
+
+    <!-- grids -->
+    <div class="row"></div>
+
+    <!-- Seller content -->
+    {% block main_content %}{% endblock %}
+
+    <!-- Footer -->
+    {% include 'components/footer.html' %}
+  </body>
+</html>

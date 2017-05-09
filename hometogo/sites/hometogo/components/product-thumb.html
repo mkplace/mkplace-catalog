@@ -1,0 +1,61 @@
+{% set sku = product.current_sku %}
+
+<div style="height:345px;" class="product-thumb" ng-controller="sku">
+    <div class="image">
+        <div class="overlay"></div>
+        {% set thumb = sku.images[0] %}
+        {% set thumb2 = sku.images[1] %}
+
+        {% if thumb %}
+        <img src="{{thumb.path()}}" class="first-image" width="220"/>
+        {% endif %}
+
+        {% if thumb2 %}
+        <img src="{{thumb2.path()}}" class="sec-image" style="display:none" width="220"/>
+        {% endif %}
+        {% if session.get('customer', None) %}
+            {% if sku.available and not sku.is_voucher %}
+            <div class="product-actions" ng-init="selleroffer_id = {{sku.offer.id}}">
+                <a href="javascript:;" mk-add-to-cart="{{sku.id}}" mk-add-to-cart-quantity="1" mk-options='{"message_after_add" : {"type" : "success", "message" : "Produto adicionado com sucesso!"}}' title="Adicionar no carrinho" class="add-to-cart no-follow"></a>
+                <a href="javascript:;" title="Adicionar á lista de desejos" class="add-to-list"></a>
+                <a href="{{sku.link}}" title="Ver detalhes" class="details"></a>
+                <a href="javascript:;" ng-click="sku.add_to_cart()" title="Adicionar e ir para o carrinho" class="addgo-to-cart"></a>
+            </div>
+            {% elif sku.available and sku.is_voucher %}
+            <div class="product-actions act-cupom act-freecupom">
+                <a href=javascript: title="Adicionar á lista de desejos" mkplace-add-wishlist=25558 class="add-to-list home"></a>
+                <a href="{{sku.link}}" title="Ver detalhes" class="details"></a>
+            </div>
+            {% else %}
+            <div class="product-actions">
+                <a href="javascript:;" title="Adicionar á lista de desejos" class="add-to-list"></a>
+                <a href="{{sku.link}}" title="Ver detalhes" class="details"></a>
+            </div>
+            {% endif %}
+        {% else %}
+        <div class="product-actions">
+            <a href="{{sku.link}}" title="Ver detalhes" class="details"></a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="info" >
+        <span class="manufacturer-name">{{product.manufacturer.name}}</span>
+        <small title="{{sku.name}}">{{sku.name}}</small>
+        <!-- pricing options -->
+        {% if session.get('customer', None) %}
+            {% if sku.available and not sku.is_voucher %}
+                {% if sku.offer.list_price == sku.offer.price %}
+                    <small class="price"><strong>R$ {{sku.offer.price|real_format}}</strong></small>
+                {% else %}
+                    <small class="price"><s>R$ {{sku.offer.list_price|real_format}}</s> - <strong>R$ {{sku.offer.price|real_format}}</strong></small>
+                {% endif %}
+            {% elif sku.available and sku.is_voucher %}
+                <small><strong>cupom de desconto</strong></small>
+            {% else %}
+                <small><strong>indisponivel</strong></small>
+            {% endif %}
+        {% else %}
+            <small><strong>mais detalhes</strong></small>
+        {% endif %}
+    </div>
+</div>
