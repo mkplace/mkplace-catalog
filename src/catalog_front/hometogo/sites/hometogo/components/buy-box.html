@@ -1,0 +1,67 @@
+{% set sku = product.current_sku %}
+{% if session.get('customer', None) %}
+<div>
+    {% if sku.available and not sku.is_voucher %}
+    <div id=product-avaible style="display:block" ng-init="selleroffer_id = {{sku.offer.id}}">
+    	<p class=shipping-info style=font-size:14px>
+            Vendido e entregue por <span><a href="/seller/{{sku.offer.seller.slug}}/{{sku.offer.seller.id}}"><strong class="primary-color underline">{{sku.offer.seller.name}}</strong></a></span>
+        </p>
+    	<div ng-if="sku.shipping_simulation">
+    		Valor/Prazo de entrega: <strong class=primary-color><span ng-bind="sku.shipping_simulation.best_sla.price"></span></strong> em
+    		<strong class="primary-color underline"><span ng-bind="sku.shipping_simulation.best_sla.time"></span> dias</strong>
+    	</div>
+    	<div class=price-info>
+    		<div class=price-one>de <span><s>R$ {{sku.offer.list_price|real_format}}</s></span></div>
+    		<div class=price-two>por <span>R$ {{sku.offer.price|real_format}}</span></div>
+    	</div>
+    	<div class=payment-info>
+    	    10X de <strong>{{sku.offer.price|real_format}}</strong>
+        </div>
+        <button type="button" ng-click="sku.add_to_cart(1, {'redirect_to' : '/shopping-cart'})" class="buy-button pull-left"></button>
+    </div>
+    {% elif sku.available and sku.is_voucher %}
+    <div id="product-avaible" data-productid="23944" style="display: block;">
+        <p class="shipping-info" style="font-size:14px">Cupom de desconto <a href="/busca?idseller=352"><strong class="primary-color underline">{{sku.offer.seller.name}}</strong></a></p>
+        <div class="price-info">
+            <div class="price-two">cupom de descontos</div>
+        </div>
+        <button type="button" class="buy-button pull-left cupom freecupom"></button>
+    </div>
+    {% else %}
+    <div id=product-not-avaible style="display:block">
+    	<div class=row>
+    		<div class=col-sm-12>
+    			<h3 class="primary-color text-center not-available"><strong>Produto indisponivel</strong></h3>
+    		</div>
+    	</div>
+    	<hr>
+    	<div class=letme>
+    		<p>Esse produto não está disponivel no momento, a função "avise-me quando chegar" pode facilitar sua procura, enviando um email quando o produto estiver disponivel no nosso site</p>
+    		<p>Você será avisado no email <strong mkplace-user-email=true>ti@mkplace.com.br</strong> quando o produto estiver disponivel.</p>
+    		<div class=row>
+    			<div class=col-sm-6>
+    				<button class="btn btn-block btn-default">Cancelar</button>
+    			</div>
+    			<div class=col-sm-6>
+    				<button class="btn btn-block btn-success" mkplace-add-letme=28283>Confirmar</button>
+    			</div>
+    		</div>
+    	</div>
+    	<button class="btn btn-block btn-info letme-btn">Avise-me quando chegar</button>
+    </div>
+    {% endif %}
+</div>
+{% else %}
+<div id=product-not-avaible style="display:block">
+    <div class=row>
+        <div class="col-sm-12 text-center">
+            <h3 class="primary-color text-center not-available">
+                <strong>Para visualizar essa oferta</strong><br>
+                <a href="javascript:;" ng-click="customer.login()">acesse sua conta</a>
+            </h3>
+            <hr>
+            <small>Não é cadastrado na Home To Go? Solicite um acesso <strong><a href="#">clicando aqui</a></strong>.</small>
+        </div>
+    </div>
+</div>
+{% endif %}

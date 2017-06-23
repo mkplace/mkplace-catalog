@@ -1,0 +1,262 @@
+/*Special Products*/
+.special-products{
+	padding-top: 100px;	
+	@media (max-width: 767px){
+		.p05{
+			padding: 0;
+		}
+	}
+}
+.special-product-gallery{	
+	@media (max-width: 767px){
+		max-width: 610px;
+		margin: 0 auto;
+		.grid-sizer{
+			width: 305px;
+		}
+	}	
+	@media (max-width: 639px){
+		max-width: 320px;
+	}
+}
+
+.product-item{
+	padding: 15px;
+	text-align: center;
+	@media (max-width: 767px){
+		width: 50%;
+		float: left;
+	}
+	@media (max-width: 639px){
+		width: 100%;
+	}
+	.inner{
+		margin: 0;
+		position: relative;
+		box-shadow: none;
+		@include transition;
+		top: 0;
+		&:hover,&:focus{
+			top: -12px;
+			box-shadow: 2.756px 9.613px 18px 0px rgba(0, 0, 0, 0.15);
+			.hover-box{
+				opacity: 1;
+				z-index: 1;
+			}
+		}
+	}
+	.img-holder{
+		padding: 0 30px;
+		img{
+			max-width: 100%;
+		}
+	}
+	&.short-item{
+		.img-holder{
+			line-height: 423px;
+			@media (max-width: 1199px){
+				line-height: 350px;
+			}
+			@media (max-width: 991px){
+				line-height: 423px;
+			}
+			@media (max-width: 767px){
+				line-height: 350px;
+			}
+		}
+	}
+	&.long-item{
+		.img-holder{
+			line-height: 876px;
+			@media (max-width: 1199px){
+				line-height: 730px;
+			}
+			@media (max-width: 991px){
+				line-height: 876px;
+			}
+			@media (max-width: 767px){
+				line-height: 350px;
+			}
+		}
+	}
+	.text-holder{
+		position: absolute;
+		left: 30px;
+		right: 30px;
+		bottom: 20px;
+		h4{
+			font-size: 16px;
+			font-family: $font;
+			font-weight: 400;
+			@media (max-width: 1199px){
+				font-size: 14px;
+			}
+			@media (max-width: 991px){
+				font-size: 16px;
+			}
+			@media (max-width: 767px){}
+		}
+	}
+	.this-title{
+		margin: 0 0 5px;
+	}
+	.this-price{
+		margin: 0;
+	}
+	.hover-box{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		text-align: center;
+		opacity: 0;
+		@include transition;
+		border: 2px solid transparent;
+		z-index: -1;
+		ul{
+			display: table;
+			margin: 0 auto;
+			padding: 13px;
+			width: 100%;
+			position: absolute;
+			top: calc(50% - 33px);
+			li{
+				display: inline-block;
+				& + li{
+					border-left: 1px solid;
+				}
+				a{
+					line-height: 40px;
+					padding: 0 25px;
+					font-size: 30px;
+				}
+			}
+		}
+	}
+	
+	.sn-tag{
+		position: absolute;
+		top: 30px;
+		left: 47px;
+		padding: 0 18px;
+		text-transform: capitalize;
+		font: 16px/34px $font;		
+		&:before{
+			content: '';
+			display: inline-block;
+			width: 0;
+			height: 0;
+			border-right: 17px solid;
+			border-top: 17px solid transparent;
+			border-bottom: 17px solid transparent;
+			position: absolute;
+			top: 0;
+			left: -17px;
+		}
+		&:after{
+			content: '';
+			width: 6px;
+			height: 6px;
+			position: absolute;
+			display: block;
+			top: calc(50% - 3px);
+			left: -3px;
+			border-radius: 100%;
+		}
+	}
+	
+	
+	// Style 2
+	&.style2{
+		.text-holder{
+			position: relative;
+			left: auto;
+			right: auto;
+			bottom: auto;
+			padding-top: 3px;
+			h4{
+				font-size: 16px;
+				font-family: $font;
+				font-weight: 400;
+			}
+			.this-title{
+				margin-bottom: 10px;
+			}
+			.this-price{
+				margin-bottom: 18px;
+			}
+		}
+		.hover-box{
+			ul{
+				padding: 14px 0;
+				li{
+					a{
+						line-height: 21px;
+						padding: 0 20px;
+						font-size: 20px;
+					}
+				}
+			}
+		}
+		&.short-item{
+			.img-holder{
+				line-height: 205px;
+				@media (max-width: 1199px) and (min-width: 992px){
+					line-height: 175px;
+				}
+				@media (max-width: 767px){
+					line-height: 225px;
+				}
+			}
+		}
+		&.long-item{
+			.img-holder{
+				line-height: 505px;
+				@media (max-width: 1199px) and (min-width: 992px){
+					line-height: 445px;
+				}
+				@media (max-width: 767px){
+					line-height: 225px;
+				}
+			}
+		}		
+	}
+}
+
+.gallery-filter{
+	display: table;
+	margin: 0 auto;
+	border: none;
+	padding: 10px 0 35px;
+	text-align: center;
+	li{
+		float: left;
+		padding: 5px 10px;
+		line-height: 1;
+		text-transform: uppercase;
+		font-family: $font;
+		position: relative;
+		cursor: pointer;
+		@media (max-width: 639px){
+			float: none;
+			display: inline-block;
+		}
+		& + li{
+			margin-left: 4px;
+			&:before{
+				content: '';
+				width: 4px;
+				height: 4px;
+				border-radius: 100%;
+				display: block;
+				position: absolute;
+				top: 10px;
+				left: -4px;
+				@media (max-width: 639px){
+					display: none;
+				}
+			}
+		}
+	}
+}

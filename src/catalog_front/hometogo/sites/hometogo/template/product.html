@@ -1,0 +1,189 @@
+{% extends 'layout/product.html' %}
+
+{% block main_content %}
+<section class=page-title>
+	<div class=container>
+		<a href="/busca?filter-manufacturer={{product.manufacturer.slug}}" class=client-logo>
+			<h1 style="margin-top:15px; margin-left:5px;">{{product.manufacturer.name}}</h1>
+		</a>
+	</div>
+</section>
+
+<section>
+	<div class="container product-detail" ng-controller="sku">
+		<div class=row>
+			<div class=col-sm-12>
+				<ul class=breadcrumbs-htg>
+				    {% for bread in product.breadcrumbs %}
+                        <li><a href="{{bread.link}}">{{bread.name}} </a></li>
+                    {% endfor %}
+				</ul>
+			</div>
+			<div class=col-sm-12>
+				<div class=row>
+					<div class=col-sm-12>
+						<div class=product-detail>
+							<div class=row>
+								<div class=col-sm-7>
+									<div class=product-galery>
+										<div class=thumb>
+											<div id=galerythumb>
+												<ul>
+													{% for image in sku.images %}
+                                                        <li><img src="{{image.path()}}" data-src-zoom="{{image.path()}}" alt /></li>
+                                                    {% endfor %}
+												</ul>
+											</div>
+										</div>
+										<div class=zoom>
+											<div id=imagezoom>
+												<button type=button class=zoom-btn></button>
+												{% with firstimage = sku.images[0] %}
+													{% if firstimage %}
+	                                                	<img src="{{firstimage.path()}}" alt class="zoom-img"/>
+	                                                {% endif %}
+                                                {% endwith %}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class=col-sm-5>
+									<div class=product-info>
+										<h4 class=manufacturer-name title="{{sku.name if product.current_sku else product.name}}">{{sku.name if product.current_sku else product.name}}</h4>
+										<h4 class="primary-color sku-info" style=margin-top:5px>{{sku.partnumber or ""}}</h4>
+										{% if sku.product.variants|length > 0 %}
+										<div id=product-variants mk-product-variations mk-sku-id="{{sku.id}}" style="margin:25px 0;display:block">
+											{% for variant in sku.product.variants %}
+                                                {% set variant = sku.product.variants[variant] %}
+        											<div class=sku-select data-attribute="{{variant.attribute.name}}">
+        												<label>{{variant.attribute.name}}</label>
+        												<div class="default attribute-variant">
+        													{% for value in variant.get('values') %}
+                                                                <a href=javascript: data-attribute="{{variant.attribute.name}}" data-value="{{value}}">
+            														<div class=display-zoom></div>
+            														<span>{{value}}</span>
+            													</a>
+                                                            {% endfor %}
+        												</div>
+        											</div>
+        									{% endfor %}
+										</div>
+										{% endif %}
+										{% include 'components/buy-box.html' %}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% if session.get('customer', None) %}
+				<section class="page-title shipping-calculator">
+					<div>
+						<div class=text> Calcule o frete e o prazo de entrega estimados para sua região. <a href=# class="primary-color underline">Saiba mais</a> </div>
+						<div class=form>
+							<input type=text name=cep_a class=productZipcode ng-model="sku.shipping_simulation.zipcode">
+							<input type=submit class=setZipcode value=Calcular ng-click="sku.shipping_simulation.simulation()">
+							<a href="http://www.buscacep.correios.com.br/servicos/dnec/menuAction.do?Metodo=menuLogradouro" target=_blank><span class="primary-color underline">Não sei meu cep</span></a>
+						</div>
+					</div>
+				</section>
+				{% endif %}
+				<section>
+					<div class=product-details>
+						<div id=product-tabs>
+							<div>
+								<ul class="nav nav-pills">
+									<li class=active><a data-toggle=tab href=#description>Descrição do produto</a></li>
+									<li><a data-toggle=tab href=#review>Avaliação do produto ({{sku.rating.count or '0'}})</a></li>
+									<li class=pull-right><a href=javascript: mkplace-add-wishlist=28283><strong class="primary-color color-primary">?</strong> Adicionar na lista de desejo</a></li>
+								</ul>
+							</div>
+						</div>
+						<h3 id=caracteristicas class=title-underline style="margin:20px 0"><span>Descrição do produto</span></h3>
+						<p class=product-description>
+						    {{product.description|safe}}
+						</p>
+						{% if product.attributes|length > 0 %}
+						<h3 id=caracteristicas class=title-underline style="margin:20px 0"><span>Características</span></h3>
+						<table class="table table-striped">
+							<tbody>
+								{% for attribute in product.attributes %}
+								<tr>
+								    {% if attribute.attribute_value %}
+								    <td width=200><strong>{{attribute.attribute_name}}</strong></td>
+                                    <td>{{attribute.attribute_value}}</td>
+                                    {% endif %}
+								</tr>
+                                {% endfor %}
+							</tbody>
+						</table>
+						{% endif %}
+						<!-- <div class=show-all-attributes>
+							<img src=/hometogo-assets/catalog_htg/img/show-all-attributes.png alt /> Exibir todas as características
+						</div> -->
+						<h3 id=caracteristicas class=title-underline style="margin:20px 0"><span>Avaliações do produto</span></h3>
+						<br />
+						{% for review in sku.reviews %}
+						<blockquote class="product-review">
+                            <div class="title">
+                                {{review.title}}
+                            </div>
+                            <ul class="rating">
+                                {% for star in range(0, review.rating) %}
+                                <li></li>
+                                {% endfor %}
+                                {% for star in range(review.rating, 5) %}
+                                <li class="empty"></li>
+                                {% endfor %}
+                            </ul>
+                            <p>{{review.text}}</p>
+                            <p class="text-muted">-
+                                {% if review.customer.entity %}
+                                    <b>{{review.customer.entity.legal_name }}</b>
+                                {% else %}
+                                    <b>Visitante</b>
+                                {% endif %}
+                                {{review.created_at|datetime("%d/%m/%Y")}}
+                            </p>
+                        </blockquote>
+                        {% endfor%}
+						{% if not sku.reviews %}
+						<h2 class="text-muted text-center">
+							Nenhuma avaliação para esse produto
+							<br /><small>Seja o primeiro a avaliar esse produto</small>
+						</h2>
+						{% endif %}
+						<hr />
+						<div class=row>
+							<div class="col-sm-6 text-right form-rating">
+								<div class=form-group>
+									<input type=text ng-model="sku.new_review.title" id="comments-name" name=title placeholder=Título />
+								</div>
+								<div class=form-group>
+									<textarea name=comment ng-model="sku.new_review.comment" id="comments-description" placeholder=Comentário /></textarea>
+								</div>
+							</div>
+							<div class=col-sm-6>
+								<div id=wrapper>
+									<div class=rating-product>
+										<p>Sua nota</p>
+										<p class=clasificacion>
+											<input id=radio1 type=radio name=rating value=5>
+											<label for=radio1>&#9733;</label><input id=radio2 type=radio name=rating value=4>
+											<label for=radio2>&#9733;</label><input id=radio3 type=radio name=rating value=3>
+											<label for=radio3>&#9733;</label><input id=radio4 type=radio name=rating value=2>
+											<label for=radio4>&#9733;</label><input id=radio5 type=radio name=rating value=1>
+											<label for=radio5>&#9733;</label>
+										</p>
+										<p><input type=submit value=Avaliar name=submit class=send_review ng-click="sku.create_review()" /></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

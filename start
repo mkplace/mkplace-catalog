@@ -1,0 +1,9 @@
+if [ $1 ]
+then
+	PORT=$1
+else
+	PORT=8080
+fi
+
+docker build -t mkplace_catalog .
+docker run -i -t -v $(pwd):/var/www/mkplace-catalog -p $PORT:8000 -e APPLICATION_ENV=DEVELOPMENT -e PORT=$PORT -e SSH_KEYS="$(ssh-add -L)" mkplace_catalog

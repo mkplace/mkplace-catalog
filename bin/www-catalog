@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+cd /var/www/mkplace-catalog/src;
+
+if [ $APPLICATION_ENV = "DEVELOPMENT" ]
+then
+
+. /var/www/envs/catalog/bin/activate;
+
+echo '\n\n    __  ___ __           __                      ____   __        __   ____
+   /  |/  // /__ ____   / /____ _ _____ ___     / __ \ / /____ _ / /_ / __/____   _____ ____ ___
+  / /|_/ // //_// __ \ / // __ `// ___// _ \   / /_/ // // __ `// __// /_ / __ \ / ___// __ `__ \
+ / /  / // ,<  / /_/ // // /_/ // /__ /  __/  / ____// // /_/ // /_ / __// /_/ // /   / / / / / /
+/_/  /_//_/|_|/ .___//_/ \__,_/ \___/ \___/  /_/    /_/ \__,_/ \__//_/   \____//_/   /_/ /_/ /_/
+             /_/'
+echo "\n\nYou development environment is ready on: http://localhost:$PORT/\n\n"
+
+python application.py
+
+else
+	cd /usr/lib/python2.7
+  	ln -s plat-x86_64-linux-gnu/_sysconfigdata_nd.py .
+	cd /var/www/mkplace-platform/catalog
+	uwsgi --ini uwsgi.ini
+    tailf /dev/null
+fi

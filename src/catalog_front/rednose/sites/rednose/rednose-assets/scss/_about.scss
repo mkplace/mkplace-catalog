@@ -1,0 +1,234 @@
+.about-us-header{
+	text-align: center;
+	.this-cover-img{
+		opacity: 0.79;
+		display: inline-block;
+		max-width: 100%;
+	}
+	.this-title{
+		position: absolute;
+		top: 50%;
+		transform: translateY(-100%);
+		width: 100%;
+		margin: 0;
+		text-transform: uppercase;
+		font: 700 73.67px/1 $font;
+		@media (max-width: 767px){
+			transform: translateY(-50%);
+		}
+		@media (max-width: 479px){
+			font-size: 50px;
+		}
+	}
+}
+
+.who-why{	
+	p{
+		margin: 0;
+		font: 16px/30px $font3;
+		@media (max-width: 1199px){
+			font-size: 15px;
+			line-height: 26px;
+		}
+		& + p{
+			margin-top: 35px;
+			@media (max-width: 1199px){
+				margin-top: 15px;
+			}
+		}
+	}
+}
+
+.who-we-are.row{
+	margin-top: -166px;
+	@media (max-width: 1199px){
+		margin-top:-140px;
+	}
+	@media (max-width: 991px){
+		.container{
+			max-width: 585px;
+		}		
+	}
+	@media (max-width: 767px){
+		margin-top: 0;
+	}
+	.inner{
+		margin: 0;
+	}
+	.text-holder{
+		padding: 70px;
+		@media (max-width: 1199px){
+			padding: 50px 40px 20px;
+		}
+		@media (max-width: 991px){
+			padding-bottom: 40px;
+		}
+		@media (max-width: 479px){
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+	}
+	.img-holder{}
+}
+
+.why-choose-us{
+	&:before,&:after{
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		display: block;
+	}
+	&:before{
+		background: url(../images/about.jpg) no-repeat scroll center center;
+		background-size: cover;
+		opacity: 0.41;
+		z-index: 1;
+	}
+	&:after{
+		background: url(../images/polygol.png) no-repeat fixed center center;
+		background-size: cover;
+		opacity: 0.84;
+		z-index: 2;
+	}
+	.container{
+		position: relative;
+		z-index: 3;
+		@media (max-width: 991px){
+			max-width: 585px;
+		}
+	}
+	.img-holder{
+		@media (max-width: 991px){
+			padding: 0;
+		}
+		img{
+			@media (min-width: 992px){
+				position: absolute;
+				right: 0;
+				top: 137px;
+				z-index: 2;
+			}
+			@media (max-width: 991px){
+				max-width: 100%;
+			}
+		}
+	}
+	.text-holder{
+		padding-top: 95px;
+		padding-bottom: 65px;
+		padding-left: 40px;
+		padding-right: 40px;
+		@media (min-width: 992px){
+			left: calc( 41.66666667% + 30px );
+			width: calc( 58.33333333% - 30px );
+			padding-left: 80px;
+			padding-right: 30px;
+		}
+		@media (min-width: 1200px){
+			left: calc( 41.66666667% + 30px );
+			width: calc( 58.33333333% - 30px );
+			padding-left: 155px;
+			padding-right: 50px;
+		}
+		@media (max-width: 767px){
+			padding-top: 50px;
+		}
+		@media (max-width: 479px){
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+	}
+}
+
+.our-team{
+	padding: 100px 0 85px;
+}
+
+.team-member{
+	padding: 15px;
+	@media (max-width: 767px){
+		max-width: 315px;
+		margin: 0 auto;
+	}
+	&:after{
+		content: attr(data-serial);
+		font: 700 218px/1 $font;
+		color: #fff;
+		position: absolute;
+		z-index: 0;
+		bottom: -48px;
+		@media (max-width: 1199px){
+			font-size: 170px;
+			bottom: -34px;
+		}
+	}
+	.inner{
+		background: #f7f7f7;
+		margin: 0;
+	}
+	.img-holder{
+		.row{
+			@media (max-width: 1280px){
+				margin: 0;
+			}
+		}
+		img{
+			max-width: 100%;
+		}
+	}
+	.text-holder{
+		z-index: 2;
+		position: relative;
+		.row.ml0{
+			padding: 40px 25px 25px;
+			@media (max-width: 1199px){
+				padding: 30px 20px 20px;
+			}
+		}
+	}
+	.heading{
+		display: table;
+		margin: 0 auto 35px;
+		text-transform: uppercase;
+		@media (max-width: 1199px){
+			margin-bottom: 15px;
+		}
+	}
+	.this-title{
+		margin-top: 0;
+		margin-bottom: 5px;
+		font-weight: 700;
+		font-family: $font;
+		color: #252525;
+		@media (max-width: 1199px){
+			font-size: 18px;
+		}
+	}
+	.this-name{
+		color: #252525;
+		line-height: 1;
+		font-family: $font3;
+		font-size: 16px;
+		margin: 0;
+		@media (max-width: 1199px){
+			font-size: 14px;
+		}
+	}
+	p{
+		margin: 0;
+		font: 16px/30px $font3;
+		@media (max-width: 1199px){
+			font-size: 14px;
+			line-height: 22px;
+		}
+		& + p{
+			margin-top: 35px;
+			@media (max-width: 1199px){
+				margin-top: 15px;
+			}
+		}
+	}
+}

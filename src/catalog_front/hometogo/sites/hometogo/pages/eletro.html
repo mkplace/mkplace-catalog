@@ -1,0 +1,45 @@
+{% extends 'layout/hotsite.html' %}
+
+{% block page_title %}Eletro{% endblock %}
+
+{% block hotsite_banner %}
+<div class="bannervoucher">
+    <div class="slider top" style="margin-top:10px;">
+        {% for bannersnippet in this.get_banner(slot='eletro-hotsite').get('bannersnippets', []) %}
+    	<a href="{{bannersnippet['snippet']['href'] or 'javascript:;'}}" target="{{bannersnippet['snippet']['target'] or ''}}" style=width:100%;height:500px;display:block>
+            <div class=slide style="background:url('{{bannersnippet['snippet']['image']['file']['path']}}') center;width:100%;height:500px"></div>
+    	</a>
+    	{% endfor %}
+     </div>
+ </div>
+{% endblock %}
+
+{% block main_content %}
+<section>
+    <div class=container>
+        <h3 class="default-title-upper text-center"><strong>ELETRO</strong> | HOME TO GO</h3>
+<BR>
+
+    <div class=full-cartridge>{% for product in this.get_cartdrige( by_hash = "HYVSMX" ) %}{% include 'components/product-thumb.html' %}{% endfor %}</div>
+
+    <br>
+        <div class="row container">
+        	<hr class=primary-arrow>
+        	{% include 'components/search-filters.html' %}
+        	<div class="col-sm-9 category-listing">
+        		<ul class=product-list>
+        			{% for product in search.skus %}
+                        <li>{% include 'components/product-thumb.html' %}</li>
+                    {% endfor %}
+        		</ul>
+        		<hr style=clear:both>
+				<ul class=list-pagination>
+					{% for page in this.pagination.pages %}
+                    <li {% if page.is_current %}class="active"{% endif %}><a {% if page.is_current %}class="active"{% endif %} href="{{page.link}}">{{page.count}}</a></li>
+                    {% endfor %}
+				</ul>
+        	</div>
+        </div>
+    </div>
+</section>
+{% endblock %}

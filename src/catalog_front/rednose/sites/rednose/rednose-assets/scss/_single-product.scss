@@ -1,0 +1,489 @@
+.single-product{}
+
+.product-specify{
+}
+
+.single-product-imgs{
+	.inner{
+		margin: 0;
+	}
+	
+	.flexslider{
+		background: none;
+		border: none;
+		margin-bottom: 75px;
+		text-align: center;
+		@media (max-width: 991px){
+			margin-bottom: 0;
+		}
+		@media (max-width: 767px){
+			max-width: 480px;
+			margin: 0 auto;
+		}
+		.slides{
+			li{
+				img{
+					display: inline-block;
+					width: auto;
+					max-width: 80%;
+				}
+			}
+		}
+		.flex-direction-nav{
+			.flex-prev{
+				left: -50px;
+				@media (max-width: 767px){
+					left: -30px;
+				}
+			}
+			.flex-next{
+				right: -55px;
+				@media (max-width: 767px){
+					right: -30px;
+				}
+			}
+		}
+		&:hover,&:focus{
+			.flex-direction-nav{
+				.flex-prev{
+					left: -50px;
+					@media (max-width: 767px){
+						left: -30px;
+					}
+				}
+				.flex-next{
+					right: -55px;
+					@media (max-width: 767px){
+						right: -30px;
+					}
+				}
+			}
+		}
+	}
+	
+	.flex-direction-nav{
+		.flex-prev,.flex-next{
+			width: 41px;
+			line-height: 39px;
+			border: 1px solid;
+			opacity: 1;
+			&:before{
+				font-size: 16px;
+				width: 100%;
+				text-align: center;
+			}
+		}
+		.flex-prev{
+			&:before{
+				font-family: "FontAwesome";
+				content: "\f104";
+			}
+		}
+		.flex-next{
+			&:before{
+				font-family: "FontAwesome";
+				content: "\f105";
+			}
+		}
+	}
+}
+
+#proImg-slider{
+	.slides{
+		li{
+			line-height: 600px;
+			@media (max-width: 1199px) and (min-width: 992px){
+				line-height: 450px;
+			}
+			@media (max-width: 767px){
+				line-height: 450px;
+			}
+			@media (max-width: 479px){
+				line-height: 350px;
+			}
+		}
+	}
+}
+#proImg-carousel{
+	margin: 0 70px 170px;
+	@media (max-width: 991px){
+		margin-bottom: 50px;
+	}	
+	@media (max-width: 767px){
+		max-width: 250px;
+		margin: 0 auto 50px;
+	}
+}
+
+
+.product-spec{
+	.product-subtitle{
+		font: 16px/22px $font;
+		margin-top: 25px;
+		margin-bottom: 18px;
+	}
+	.product-title,.product-price{
+		font-family: $font;
+		font-size: 22px;
+		margin-bottom: 16px;
+		span{
+			color: $red;
+		}
+	}
+	.product-title,.prodcut-price{
+		text-transform: uppercase;	
+	}
+	.product-price{
+		margin: 38px 0;
+	}
+	.pro-description{
+		line-height: 24px;
+		font-family: $font3;
+		margin-bottom: 38px;
+	}
+	.choose-colors{
+		line-height: 49px;
+		font-family: $font;
+		@media (max-width: 767px){
+			line-height: 30px;
+		}
+		.pull-left{
+			width: 40px;
+		}
+		input{
+			display: none;
+			& + label{
+				height: 49px;
+				width: 49px;
+				float: left;
+				border-radius: 100%;
+				margin-left: 30px;
+				padding: 10px;
+				margin-bottom: 0;
+				border: 1px solid;
+				@media (max-width: 767px){
+					margin-left: 15px;
+					width: 30px;
+					height: 30px;
+					padding: 6px;
+				}
+				span{
+					width: 100%;
+					height: 100%;
+					border-radius: 100%;
+					display: block;
+				}
+			}
+		}
+	}
+	
+	.actions{
+		.ui-spinner{
+			float: left;
+			border-radius: 0;
+			border: 2px solid;
+			@media (max-width: 479px){
+				margin-bottom: 20px;
+				margin-right: 50px;
+			}
+			input{
+				margin: 0;
+				width: 95px;
+				padding-right: 35px;
+				float: left;
+				line-height: 64px;
+				text-align: center;
+				font-family: $font;
+				font-size: 16px;
+				@media (max-width: 767px){
+					line-height: 46px;
+				}
+			}
+			a.ui-spinner-button{
+				border-width: 2px;
+				width: 34px;
+				text-align: center;
+				line-height: 30px;
+				background: none;
+				font-size: 17.38px;
+				@media (max-width: 767px){
+					line-height: 20px;
+				}
+				span{
+					display: none;
+				}
+				&:before{
+					font-family: "FontAwesome";
+					content: "\f106";
+				}
+				& + a.ui-spinner-button{
+					border-top-width: 2px;
+				}
+			}
+			a.ui-spinner-down{
+				border-top: 2px solid;
+				&:before{
+					content: "\f107";
+				}
+			}
+		}
+		button{
+			float: left;
+			line-height: 68px;
+			height: 68px;
+			margin-left: 30px;
+			font-size: 14px;
+			@media (max-width: 767px){
+				margin-left: 15px;
+				line-height: 50px;
+				height: 50px;
+			}
+			@media (max-width: 479px){
+				margin-bottom: 20px;
+				margin-left: 0;
+			}
+			i{
+				font-size: 20px;
+				margin-right: 15px;
+			}
+		}
+		.fav{
+			width: 81px;
+			line-height: 64px;
+			border: 2px solid;
+			text-align: center;
+			font-size: 24px;
+			float: left;
+			margin-left: 30px;	
+			@media (max-width: 767px){
+				margin-left: 15px;
+				width: 50px;
+				line-height: 46px;
+			}
+		}
+	}
+	
+	.shares{
+		font-family: $font;
+		font-weight: 700;
+		line-height: 28px;
+		margin: 58px 0 48px;
+		a{
+			margin-left: 27px;
+			display: inline-block;
+			font-size: 16px;
+			border-radius: 100%;
+			text-align: center;
+			width: 28px;			
+			@media (max-width: 767px){
+				margin-left: 5px;
+			}
+			&:first-child{
+				margin-left: 36px;	
+				@media (max-width: 767px){
+					margin-left: 15px;
+				}
+			}
+			&:hover,&:focus{
+			}
+		}
+	}
+	
+	.tech-spec-title{
+		font-weight: 700;
+		font-family: $font;
+		text-transform: uppercase;
+		margin-bottom: 15px;
+	}
+	
+	table{
+		margin: 0;
+		tr{
+			&:nth-child(even){
+				td{
+					line-height: 40px;
+				}
+			}
+			td{
+				border: none;
+				padding: 0 17px;
+				line-height: 50px;
+				font-family: $font;
+			}
+		}
+	}
+}
+
+.reviews-section{
+	padding: 80px 0 50px;
+}
+
+.reviews-title{
+	font: 20px/1 $font;
+	text-transform: uppercase;
+	margin-top: 0;
+	margin-bottom: 38px;
+	&.add{
+		font-weight: 700;
+	}
+}
+
+.review{
+	margin-bottom: 30px;
+	padding-bottom: 22px;
+	border-bottom: 1px solid;
+	&:last-child{
+		margin: 0;
+	}
+	.media-left{
+		padding-right: 30px;
+		a{
+			width: 70px;
+			line-height: 70px;
+			display: block;
+			border-radius: 100%;
+			img{
+				width: 100%;
+				border-radius: 100%;
+			}
+		}
+	}
+	h5{
+		line-height: 34px;
+		margin: 0;
+		font-family: $font;
+	}
+	p{
+		line-height: 22px;
+		font-family: $font4;
+		margin: 0;
+	}
+}
+
+.related-products{
+	padding: 50px 0 80px;
+}
+
+.text-details{
+	position: relative;
+	@media (max-width: 991px){
+		max-width: 750px;
+	}
+	.text-part{		
+		width: calc(50% - 85px);
+		position: relative;
+		@media (max-width: 991px){
+			width: 100%;
+		}
+		.texts{
+			padding: 60px 0 60px 55px;
+			position: relative;
+			float: right;
+			max-width: 470px;
+			float: right;
+			line-height: 24px;
+			font-family: $font3;
+			@media (max-width: 1640px){
+				padding-top: 40px;
+				padding-bottom: 40px;
+			}
+			@media (max-width: 1439px){
+				padding-top: 25px;
+				padding-bottom: 25px;
+			}
+			@media (max-width: 1199px){
+				padding-top: 25px;
+				padding-bottom: 25px;
+			}
+			@media (max-width: 639px){
+				padding-left: 0;
+			}
+		}
+		.this-title{
+			position: absolute;
+			transform: rotate(-90deg) translate(calc(-50% + 12px),calc(-100% - 152px));
+			top: 0;
+			left: 0;
+			width: 360px;
+			text-align: center;
+			margin: 0;
+			font: 700 20px/1 $font;
+			text-transform: uppercase;
+			@media (max-width: 1640px){
+				width: 320px;
+				transform: rotate(-90deg) translate(calc(-50% + 12px),calc(-100% - 132px));
+			}
+			@media (max-width: 1439px){
+				width: 290px;
+				transform: rotate(-90deg) translate(calc(-50% + 12px),calc(-100% - 117px));
+			}
+			@media (max-width: 639px){
+				width: 100%;
+				transform: none;
+				text-align: center;
+				margin: 20px 0;
+				position: relative;
+				top: auto;
+				left: auto;
+			}
+		}
+		p{
+			margin: 0;
+		}
+	}
+	.img-part{
+		width: calc(50% + 85px);
+		@media (max-width: 1199px){
+			line-height: 320px;
+		}
+		@media (max-width: 991px){
+			width: 100%;
+			line-height: 1;
+		}
+		img{
+			max-width: 100%;
+		}
+	}
+	&:nth-of-type(odd){
+		bottom: -120px;
+		z-index: 1;
+		@media (max-width: 1640px){
+			bottom: -90px;
+		}
+		@media (max-width: 1440px){
+			bottom: -50px;
+		}
+		@media (max-width: 1199px){
+			bottom: 0;
+		}
+		.text-part{			
+			left: calc(-50% - 85px);
+			@media (max-width: 991px){
+				left: auto;
+			}
+		}
+		.img-part{
+			right: calc(-50% + 85px);
+			@media (max-width: 991px){
+				right: auto;
+			}
+		}
+	}
+	&:nth-of-type(even){
+		.text-part{
+			padding-top: 100px;
+			@media (max-width: 1640px){
+				padding-top: 138px;
+			}
+			@media (max-width: 1440px){
+				padding-top: 85px;
+			}
+			@media (max-width: 1199px){
+				padding-top: 0;
+			}
+			.texts{
+				float: left;
+			}
+		}
+	}
+}

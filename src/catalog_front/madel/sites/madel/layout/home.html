@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html ng-app="catalog" ng-controller="main">
+	<head>
+		<title>Madel - Home</title>
+		{% include 'components/tag-head.html' %}
+	</head>
+	<body class=container style=width:100%;padding-left:0;padding-right:0 ng-controller="custom">
+		{% include 'components/header.html' %}
+
+		{% block main_content %}{% endblock %}
+
+		{% include 'components/footer.html' %}
+	</body>
+</html>

@@ -1,0 +1,151 @@
+/*Popular Products*/
+.popular-products{
+	padding: 98px 0 80px;
+	&:before{
+		content: '';
+		position: absolute;
+		background: url(../images/popular-products/polygon.png) no-repeat scroll center center;
+		background-size: cover;
+		opacity: 0.69;
+		display: block;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+	.container{
+		position: relative;
+		z-index: 2;
+	}
+}
+
+.popular-products-tab{
+	.nav-tabs{
+		display: table;
+		margin: 0 auto;
+		border: none;
+		padding: 15px 0 45px;
+		text-align: center;
+		li{
+			@media (max-width: 479px){
+				float: none;
+				display: inline-block;
+			}
+			& + li{
+				margin-left: 4px;
+				&:before{
+					content: '';
+					width: 4px;
+					height: 4px;
+					border-radius: 100%;
+					display: block;
+					position: absolute;
+					top: 5px;
+					left: -4px;
+					@media (max-width: 479px){
+						display: none;
+					}
+				}
+			}
+			a{
+				padding: 0 10px;
+				line-height: 1;
+				border: none;
+				text-transform: uppercase;
+				font-family: $font;
+				margin: 0;
+				@media (max-width: 479px){
+					padding: 0 10px;
+				}
+			}
+			&.active a{
+				border: none;
+			}
+		}
+	}
+}
+
+.popular-product{
+	padding: 15px;
+	text-align: center;
+	@media (max-width: 479px){
+		width: 320px;
+		max-width: 100%;
+		float: none;
+	}
+	.inner{
+		margin: 0;
+		position: relative;
+		box-shadow: none;
+		@include transition;
+		top: 0;
+		&:hover,&:focus{
+			top: -12px;
+			box-shadow: 2.756px 9.613px 18px 0px rgba(0, 0, 0, 0.15);
+			.hover-box{
+				opacity: 1;
+				z-index: 1;
+			}
+		}
+	}
+	.img-holder{
+		padding: 0 5px;
+		line-height: 363px;
+		margin: 0;
+		img{
+			max-width: 100%;
+		}
+	}
+	.text-holder{
+		padding: 20px 30px 0;
+		h4{
+			font-size: 16px;
+			font-family: $font;
+			font-weight: 400;
+			@media (max-width: 1199px){
+				font-size: 14px;
+			}
+			@media (max-width: 991px){
+				font-size: 16px;
+			}
+			@media (max-width: 767px){}
+		}
+	}
+	.this-title{
+		margin: 0 0 5px;
+	}
+	.this-price{
+		margin: 0;
+	}
+	.hover-box{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		text-align: center;
+		opacity: 0;
+		@include transition;
+		border: 2px solid transparent;
+		z-index: -1;
+		ul{
+			display: table;
+			margin: 0 auto;
+			padding: 14px;
+			width: 100%;
+			position: absolute;
+			top: calc(50% - 33px);
+			li{
+				display: inline-block;
+				& + li{
+					border-left: 1px solid;
+				}
+				a{
+					line-height: 21px;
+					padding: 0 15px;
+					font-size: 20px;
+				}
+			}
+		}
+	}
+}

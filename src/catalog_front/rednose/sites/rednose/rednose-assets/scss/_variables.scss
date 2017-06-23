@@ -1,0 +1,28 @@
+$font: 'Montserrat', sans-serif;
+$font2: 'Lato', sans-serif;
+$font3: 'PT Serif', serif;
+$font4: 'Droid Serif', serif;
+
+$red: #f60;
+$red1: lighten(saturate(adjust-hue($red, 15.5294), 0.0000), 0.0000);
+$dark: #1b1b1b;
+$dark2: #7a7a7a;
+$dark3: #262626;
+
+$dark1: lighten(saturate(adjust-hue($dark, 0.0000), 0.0000), 25.0980); // #5b5b5b
+
+
+
+// Mixins
+@mixin transition($property: all, $duration: 300ms, $animate: linear, $delay:0s){
+    transition: $property $duration $animate $delay; 
+}
+
+@mixin hfbcd($color1, $color2,$color3){
+	@include transition;
+	&:hover,&:focus{
+		background: $color1;
+		color: $color2;
+		border-color: $color3;
+	}
+}

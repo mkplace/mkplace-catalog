@@ -1,0 +1,55 @@
+{% set sku = product.current_sku %}
+<div class="thumbnail thumbnail-madel" ng-controller="sku" ng-init="selleroffer_id = {{sku.offer.id}}">
+	<!-- <span class="discount-tag" style="position:relative;top:25px;left:-4px">30% OFF</span> -->
+	<div class="img-photo-product">
+		<div style="top: 0; position: absolute; right: 0; width: 45px;" ng-click="sku.add_to_wishlist()">
+			<span class="heart-product-image">
+				<span class="glyphicon glyphicon-heart-empty text-muted"></span>
+			</span>
+		</div>
+        {% set thumb = sku.images[0] %}
+        {% if thumb %}
+		<a href="{{sku.link}}">
+			<img src="{{thumb.resize(250,250)}}" alt="{{sku.name}}" style="width:200px; height:200px;">
+		</a>
+        {% endif %}
+		<div style="bottom: 0; position: absolute; right: 0; width: 45px;" class="hide">
+			<span class="fullscreen-product-image">
+				<span class="glyphicon glyphicon-resize-full"></span>
+			</span>
+			<span class="variant-product-image">
+				<span class="glyphicon glyphicon-tint"></span>
+			</span>
+		</div>
+	</div>
+	<div>
+		<p style="font-size:10px; height:40px;">{{sku.name}}</p>
+        {% if sku.available %}
+			<a href="{{sku.link}}">
+            {% if sku.offer.list_price == sku.offer.price %}
+                <p>
+					<span class="product-old-price">
+                    De <s>R$ {{sku.offer.list_price|real_format}}</s><br>
+                    </span>
+        			<span class="product-new-price">
+        			Por <b style="font-size:18px">R$ {{sku.offer.price|real_format}}</b> à vista
+        			</span>
+        		</p>
+            {% else %}
+                <p>
+                    <span class="product-old-price">
+                    De <s>R$ {{sku.offer.list_price|real_format}}</s><br>
+                    </span>
+                    <span class="product-new-price">
+                    Por <b style="font-size:18px">R$ {{sku.offer.price|real_format}}</b> à vista
+                    </span>
+                </p>
+            {% endif %}
+			</a>
+        {% else %}
+            <small><strong>indisponivel</strong></small>
+        {% endif %}
+
+		<p><a href="{{sku.link}}" class="btn btn-danger btn-block see-detail" role="button">Ver mais detalhes</a></p>
+	</div>
+</div>

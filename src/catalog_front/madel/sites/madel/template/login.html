@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="catalog" ng-controller="main">
+	<head>
+		{% include 'components/tag-head.html' %}
+		<title>Madel - Login</title>
+		<style>.table>tbody>tr>td,.table>tfoot>tr>td{vertical-align:middle}</style>
+	</head>
+	<body ng-controller="custom">
+		<div class=row-fluid>
+			<div class="container" style="border-bottom:1px solid #f5f5f5">
+				<div class=col-md-3 style=top:15px>
+					<a href="/"><img src=/madel-assets/img/madellogo.png></a>
+				</div>
+				<div class=col-md-6>
+					<nav>
+						<ol class="cd-multi-steps text-bottom">
+							<li class=visited><a href=#0>CARRINHO</a></li>
+							<li class=current><a href=#0>IDENTIFICAÇÃO</a></li>
+							<li><a href=#0>ENDEREÇO</a></li>
+							<li><a href=#0>PAGAMENTO</a></li>
+						</ol>
+					</nav>
+				</div>
+				<div class=col-md-3 style="top:26px; right: -15px ;  text-align: right;">
+					<img src=/madel-assets/img/ambiente_seguro.png>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="row ma-0">
+				<div class=col-md-12>
+					<h2 class="red-text text-center mb-20">Identificação</h2>
+				</div>
+			</div>
+			<div style=width:95%;margin:auto>
+				<div class=row>
+					<div class="col-md-8 col-md-offset-2">
+						<div class="row mt-20">
+							<div class="col-md-6 pr-40 pl-40 pt-20 pb-20" style="border-right:1px solid rgba(0,0,0,.1)">
+								<h4 class=red-text>Já sou cadastrado</h4>
+								<div class=row ng-init="customer.login_redirect = '{{this.request.args.get('next', '/')}}'">
+									<div class=col-md-12>
+										<div class=form-group>
+											<label for=Email>Email</label><br>
+											<input type=text ng-model="customer.auth_form.login" class=custom-input id=Email placeholder=exemplo-de-email@email.com>
+										</div>
+									</div>
+									<div class=col-md-12>
+										<div class=form-group>
+											<label for=Senha>Senha</label><br>
+											<input type=password ng-model="customer.auth_form.password" class=custom-input id=Senha placeholder=Senha>
+										</div>
+									</div>
+								</div>
+								<div class="grey-text mb-10">Esqueceu sua senha?</div>
+								<div>
+									<button class="btn btn-red btn-block" ng-click="customer.auth(customer.auth_form.login, customer.auth_form.password)">ENTRAR</button>
+								</div>
+							</div>
+							<div class="col-md-6 pr-40 pl-40 pt-20 pb-20">
+								<h4 class=red-text>Ainda não sou cadastrado</h4>
+								<div class="grey-text pt-10 pb-20">Primeira compra? Cadastre-se agora mesmo</div>
+								<div>
+									<a href="/register?next={{this.request.args.get('next', '/')}}" class="btn btn-red btn-block">CADASTRE-SE</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% include 'components/footer-simple.html' %}
+		</div>
+	</body>
+</html>

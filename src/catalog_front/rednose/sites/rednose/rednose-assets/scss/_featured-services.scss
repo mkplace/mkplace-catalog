@@ -1,0 +1,63 @@
+/*Services*/
+.our-featured-services{
+	padding: 65px 0 60px;
+}
+
+.our-featured-service{
+	& + .our-featured-service{
+		@media (max-width: 767px){
+			padding-top: 50px;
+		}
+	}
+	.media-left{
+		padding-right: 19px;
+	}
+	.icon-circle{
+		position: relative;
+		width: 81px;
+		height: 81px;
+		border: 5px solid;
+		line-height: 71px;
+		border-radius: 100%;
+		text-align: center;		
+	}
+	.icon-holder{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		@include transition;
+	}
+	.icon-normal{
+		opacity: 1;
+	}
+	.icon-hover{
+		opacity: 0;
+	}
+	.this-title{
+		margin: 8px 0 10px;
+		font-family: $font2;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	p{
+		margin: 0;
+		line-height: 22px;
+		font-family: $font3;
+	}
+	
+	.media{
+		&:hover,&:focus{
+			.icon-circle{
+				
+			}
+			.icon-normal{
+				opacity: 0;
+			}
+			.icon-hover{
+				opacity: 1;
+			}
+		}
+	}
+}

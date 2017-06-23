@@ -1,0 +1,13 @@
+version: '2'
+services:
+  catalog:
+    build:
+      context: .
+      dockerfile: ./docker/catalog/Dockerfile
+    ports:
+      - '80:8000'
+    volumes:
+      - '.:/var/www/mkplace-catalog'
+    environment:
+      - APPLICATION_ENV=DEVELOPMENT
+      - PYTHONUNBUFFERED=1
