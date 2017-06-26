@@ -116,6 +116,8 @@ class search_page(view):
         if self.view_params.get('collection', None):
             current_qs["facet_collection_id"] = str(self.view_params.get('collection'))
 
+        current_qs['facet_collection_id'] = str(49)
+
         if current_qs.get('manufacturer_name', None):
             current_qs["facet_manufacturer_name"] = str(current_qs.get('manufacturer_name'))
 
@@ -125,6 +127,8 @@ class search_page(view):
 
         if self.view_params.get('collection', None):
             current_qs['filter_collection_id'] = self.view_params.get('collection', "")
+
+        current_qs['filter_collection_id'] = 49
 
         response = self.get_api("/api/front/search?format=json&" + urlencode(current_qs) )
 

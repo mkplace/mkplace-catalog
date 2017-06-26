@@ -7,15 +7,19 @@ then
 
 . /var/www/envs/catalog/bin/activate;
 
-echo '\n\n    __  ___ __           __                      ____   __        __   ____
+echo '\n    __  ___ __           __                      ____   __        __   ____
    /  |/  // /__ ____   / /____ _ _____ ___     / __ \ / /____ _ / /_ / __/____   _____ ____ ___
   / /|_/ // //_// __ \ / // __ `// ___// _ \   / /_/ // // __ `// __// /_ / __ \ / ___// __ `__ \
  / /  / // ,<  / /_/ // // /_/ // /__ /  __/  / ____// // /_/ // /_ / __// /_/ // /   / / / / / /
 /_/  /_//_/|_|/ .___//_/ \__,_/ \___/ \___/  /_/    /_/ \__,_/ \__//_/   \____//_/   /_/ /_/ /_/
              /_/'
-echo "\n\nYou development environment is ready on: http://localhost:$PORT/\n\n"
+echo "\n\n * You Mkplace Development environment is ready on: http://localhost:$PORT/"
 
-python application.py
+PYTHONUNBUFFERED=x
+
+echo $(netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}') web >> /etc/hosts
+
+python -u application.py
 
 else
 	cd /usr/lib/python2.7

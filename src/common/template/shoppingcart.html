@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html ng-app="catalog" ng-controller="main">
+	<head>
+		<meta charset=utf-8>
+		<title>Carrinho - Home To Go</title>
+		{% include 'components/tag-head.html' %}
+		<style>.table>tbody>tr>td,.table>tfoot>tr>td{vertical-align:middle}</style>
+	</head>
+	<body ng-controller="custom">
+		<!--Preloader-->
+		<div class=row-fluid>
+			<div class="container" style="border-bottom:1px solid #f5f5f5">
+				<div class=col-md-3 style=top:15px>
+					<a href="/"><img src=/assets/images/logo-1.png style="width:130px; margin-top:-10px"></a>
+				</div>
+				<div class=col-md-6>
+					<nav>
+						<ol class="cd-multi-steps text-bottom">
+							<li class=current><a href=#0>CARRINHO</a></li>
+							<li><a href=#0>IDENTIFICAÇÃO</a></li>
+							<li><a href=#0>ENDEREÇO</a></li>
+							<li><a href=#0>PAGAMENTO</a></li>
+						</ol>
+					</nav>
+				</div>
+				<div class=col-md-3 style="top:26px; right: -15px ;  text-align: right;">
+					<img src=/assets/img/ambiente_seguro.png>
+				</div>
+			</div>
+		</div>
+		<div class="container" ng-controller="shoppingcart">
+			<div class="row ma-0">
+				<div class=col-md-12>
+					<h2 class="primary-color text-center mb-20">Meu Carrinho</h2>
+				</div>
+			</div>
+			<div class=grey-trace ng-if="shoppingcart.items.length > 0"></div>
+			<div style=margin:auto>
+				<div style=width:95%;margin:auto ng-if="shoppingcart.items.length == 0">
+					<h2 class="text-muted text-center mb-20">Seu carrinho está vázio</h2>
+				</div>
+				<div ng-if="shoppingcart.items.length > 0">
+					<table id=cart class="table table-condensed" style=margin-top:-55px>
+						<thead style=background-color:#f5f5f5>
+							<tr>
+								<th style="width:40%;border:0;padding:15px 0;font-weight:100">Produto</th>
+								<th style="width:20%;border:0;padding:15px 0;font-weight:100" class="text-center">Entrega</th>
+								<th style="width:10%;border:0;padding:15px 0;font-weight:100" class="text-center">Quantidade</th>
+								<th style="width:15%;border:0;padding:15px 0;font-weight:100" class="text-center">Preço</th>
+								<th style="width:15%;border:0;padding:15px 0;font-weight:100" class=text-center>Total</th>
+								<th style="width:10%;border:0;padding:15px 0;font-weight:100"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in shoppingcart.items">
+								<td data-th=Produto style=padding:0px;border:0>
+									<div class="row-fake mt-20">
+										<div class="col-sm-3 hidden-xs" style=padding:0>
+											<div class="thumbnail">
+												<img ng-src="[[item.sku.image_path]]" alt=... class="img-responsive" style="width:100px; height:100px;"/>
+											</div>
+										</div>
+										<div class=col-sm-9 style=top:0px>
+											<p>
+												<div style="line-height:18px; font-weight:bold;">[[item.sku.name]]</div>
+												<small>ID: [[item.sku.id]]</small><br>
+												<small>Vendido e Entregue por <a class="primary-color" href="/busca?idseller=346"><strong>[[item.offer.seller.name]]</strong></a></small>
+											</p>
+										</div>
+									</div>
+								</td>
+								<td data-th=Entrega style=border:0 class="text-center">
+									<span ng-repeat="sla in item.offer.logistic_info.slas" ng-click="shoppingcart.change_sla(item.offer, sla)" ng-if="sla.is_selected">
+			                            [[sla.time]] dias úteis<br> <strong>R$ [[sla.price|real_format]]</strong>
+			                        </span>
+									<span ng-if="item.offer.sla_check == false">Indisponível</span>
+								</td>
+								<td data-th=Preço style=border:0>
+									<div class=quantity>
+										<span class="glyphicon glyphicon-minus-sign icon" ng-click="shoppingcart.item_quantity_update(item.offer.id, item.quantity - 1)"></span>
+										<span class=value><input type="text" ng-model="item.quantity" style="border:none; width:20px; text-align:center"></span>
+										<span class="glyphicon glyphicon-plus-sign icon" ng-click="shoppingcart.item_quantity_update(item.offer.id, item.quantity + 1)"></span>
+									</div>
+								</td>
+								<td data-th=Total style=border:0 class="text-center primary-color">R$ [[item.offer.unit_price|real_format]]</td>
+								<td data-th=Total style=border:0 class="text-center primary-color">R$ [[item.offer.price|real_format]]</td>
+								<td class="actions text-center" style=cursor:pointer;border:0 data-th ng-click="shoppingcart.item_quantity_update(item.offer.id, 0)">
+									<i class="fa fa-trash-o" aria-hidden=true></i>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class=row>
+						<div class=col-md-6>
+							<div class="well well-lg cupom">
+								<h5>
+									<span class=primary-color>Possui cupom ou vale?</span><br>
+									<small>Você poderá usá-lo somente nessa etapa.</small>
+								</h5>
+								<div>
+									<input type=text class=custom-input style=width:220px placeholder="Código de desconto">
+									<button>ADICIONAR</button>
+								</div>
+							</div>
+						</div>
+						<div class=col-md-6>
+							<div class="well well-lg total pull-right">
+								<div class=row>
+						            <div class="col-xs-12 col-sm-12">
+						                <div class=pull-left>SubTotal</div>
+						                <div class="pull-right text-right">R$ [[shoppingcart.summary.total_item|real_format]]</div>
+						            </div>
+						            <div class="col-xs-12 col-sm-12 mt-20">
+						                <div class=pull-left>Frete</div>
+						                <div class="pull-right text-right">
+											<input type="text" class="pull-right cep" ng-enter="shoppingcart.load()" ng-model="shoppingcart.checkout.address.zipcode" style="width:100px;" placeholder="00000-000">
+											<a href=javascript:; class="pull-right" ng-click="shoppingcart.load()">Calcular</a>
+										</div>
+										<div class="pull-right text-right">R$ [[shoppingcart.summary.total_shipping||0|real_format]]</div>
+						            </div>
+						            <div class="col-xs-12 col-sm-12 mt-20">
+						                <div class=pull-left>Total</div>
+						                <div class="pull-right text-right">
+						                    <b>R$ [[shoppingcart.summary.total|real_format]]</b>
+						                    <small>à vista<br>
+						                    ou em até 10x sem juros</small>
+						                </div>
+						            </div>
+						        </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class=row>
+					<div class=col-md-6>
+						<div class=text-left>
+							<a href="/" class="btn btn-transparent">CONTINUAR COMPRANDO</a>
+						</div>
+					</div>
+					<div class=col-md-6 ng-if="shoppingcart.items.length > 0">
+						<div class=text-right>
+							<a href="/checkout" class="btn primary-btn">FINALIZAR PEDIDO</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% include 'components/footer-simple.html' %}
+	</body>
+</html>

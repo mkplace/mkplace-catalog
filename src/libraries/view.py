@@ -10,14 +10,14 @@ class utils(object):
     endpoint = None
 
     def get_api( self, path ):
-        url = "http://web:9000%s" % (path)
+        url = "http://web%s" % (path)
         headers = {'Host': self.endpoint}
         r = requests.get(url, headers=headers)
         return json.loads(r.text)
 
 
     def post_api( self, path, data ):
-        url = "http://web:9000%s" % (path)
+        url = "http://web%s" % (path)
         headers = {'Host': self.endpoint, 'Content-Type': 'application/json'}
         r = requests.post(url, headers=headers, json = data)
 
@@ -83,7 +83,7 @@ class utils(object):
         def __init__(self, object, product, endpoint = None):
             for k in object: setattr(self, k, object.get(k))
             self.product = product
-            self.endpoint = endpoint
+            self.endpoint = endpoint.split(":")[0]
             self.configure()
 
 
@@ -92,7 +92,7 @@ class utils(object):
             self.link = "%s/%s" % (self.product.link, str(self.id) )
 
             util = utils()
-            util.endpoint = self.endpoint
+            util.endpoint = self.endpoint.split(":")[0]
 
             self.images = [ util.image_object( image ) for image in self.sku_images ]
 
@@ -124,7 +124,7 @@ class utils(object):
 
         def __init__(self, object, endpoint = None):
             for k in object: setattr(self, k, object.get(k))
-            self.endpoint = endpoint
+            self.endpoint = endpoint.split(":")[0]
             self.configure()
 
         def configure(self):
@@ -132,7 +132,7 @@ class utils(object):
             self.current_sku = None
 
             util = utils()
-            util.endpoint = self.endpoint
+            util.endpoint = self.endpoint.split(":")[0]
 
             self.breadcrumbs = []
 
@@ -184,7 +184,7 @@ class view(utils):
     def __init__(self, request, customer_auth, session, params = {}):
         self.customer_auth = session.get('customer', {})
         self.session = session
-        self.endpoint = request.host
+        self.endpoint = request.host.split(":")[0]
         self.request = request
         self.dispacher_param = None
         self.params = params
@@ -293,4 +293,4 @@ class view(utils):
 
         if not len(skus): return []
 
-        return [ self.product_object( sku, endpoint = self.endpoint ) for sku in skus ]
+        return [ self.product_object( sku, endpoint = self.endpoint.split(":")[0] ) for sku in skus ]

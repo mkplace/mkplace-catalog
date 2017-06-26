@@ -14,7 +14,8 @@ RUN apt-get install -y libxml2-dev \
 	python-dev \
 	virtualenv \
 	libev-dev \
-	python-lxml
+	python-lxml \
+	net-tools
 
 RUN locale-gen --purge pt_BR.UTF-8
 RUN locale-gen pt_BR
@@ -34,6 +35,6 @@ RUN . /var/www/envs/catalog/bin/activate; pip install openpyxl requests redis sl
 
 EXPOSE 8000
 
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED x
 
 CMD ["sh", "bin/www-catalog"]

@@ -1,0 +1,53 @@
+<div class=col-md-3>
+    <div class="primary-color mt-20 mb-20">Resumo do Pedido</div>
+    <div id=carousel-relacionados class="carousel vertical slide">
+        <div class=arrow-relacionados href=#carousel-relacionados role=button data-slide=prev>
+            <span class="glyphicon glyphicon-chevron-up" aria-hidden=true></span>
+            <span class=sr-only>Previous</span>
+        </div>
+        <div class="carousel-inner pt-15" style="border:1px solid rgba(0,0,0,0.1);border-top:0;border-bottom:0; padding:10px" role=listbox>
+            <div class="item active pa-0" style=width:100%>
+                <div class=row-fake ng-repeat="item in shoppingcart.items" style="height:125px;">
+                    <div class="col-md-4 pa-0">
+                        <div class=thumbnail>
+                            <img style="width:90px; height:90px;" ng-src="[[item.sku.image_path]]" alt=...>
+                        </div>
+                    </div>
+                    <div class="col-md-8 pa-5 font-11">
+                        <span ng-bind="item.sku.name"></span><br>
+                        <span class="product-new-price pl-0">
+                        <b>R$ <span ng-bind="item.offer.price|real_format"></span></b> (<span ng-bind="item.quantity"></span> un.)
+                        </span>
+                        <span ng-repeat="sla in item.offer.logistic_info.slas" ng-click="shoppingcart.change_sla(item.offer, sla)" ng-if="sla.is_selected" style="background: #fafafa none repeat scroll 0 0; border: 1px solid #eee; cursor: pointer; display: block; margin-top: 5px; padding: 5px; width: 100%;">
+                            <i class="fa fa-truck"></i> [[sla.name]] <br> <strong>R$ [[sla.price|real_format]]</strong>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=arrow-relacionados href=#carousel-relacionados role=button data-slide=next>
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden=true></span>
+            <span class=sr-only>Next</span>
+        </div>
+    </div>
+    <div class="mt-20 well well-lg total max-width-100 pull-right">
+        <div class=row>
+            <div class="col-xs-12 col-sm-12">
+                <div class=pull-left>SubTotal</div>
+                <div class="pull-right text-right">R$ <span ng-bind="shoppingcart.summary.total_item||0|real_format"></span></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 mt-20">
+                <div class=pull-left>Frete</div>
+                <div class="pull-right text-right">R$ [[shoppingcart.summary.total_shipping||0|real_format]]</div>
+            </div>
+            <div class="col-xs-12 col-sm-12 mt-20">
+                <div class=pull-left>Total</div>
+                <div class="pull-right text-right">
+                    <b>R$ <span ng-bind="shoppingcart.summary.total||0|real_format"></span></b>
+                    <small>à vista<br>
+                    ou em até 10x sem juros</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
