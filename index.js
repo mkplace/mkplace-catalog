@@ -1,8 +1,12 @@
 var http = require('http');
 var express = require('express');
+var session = require('express-session')
 var path = require('path');
 var platform = require('./platform');
 var api_backend = require('./routes/api/backend');
+var passport = require('passport');
+
+mongoose.connect('mongodb://localhost/session', { useMongoClient: true });
 
 class catalog {
 
@@ -11,6 +15,14 @@ class catalog {
         this.config = config ? typeof config != 'undefined' : {};
         this.app = express();
         this.app.set('view engine', 'pug');
+        this.app.use(session({
+            store: new MongoStore({ mongooseConnection: mongoose.connection }),
+            secret: 'se3cr3t',
+            resave: false,
+            saveUninitialized: true,
+        }));
+        this.app.use(passport.initialize());
+        this.app.use(passport.session());
     }
 
     auth(endpoint, token) {
