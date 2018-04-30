@@ -7,6 +7,8 @@ var platform = require('./platform');
 var api_backend = require('./routes/api/backend');
 var passport = require('passport');
 
+const MongoStore = require('connect-mongo')(session);
+
 mongoose.connect('mongodb://localhost/session', { useMongoClient: true });
 
 class catalog {
