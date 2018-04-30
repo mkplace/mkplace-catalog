@@ -5,6 +5,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var platform = require('./platform');
 var api_backend = require('./routes/api/backend');
+var bodyParser = require('body-parser');
 var passport = require('passport');
 
 const MongoStore = require('connect-mongo')(session);
@@ -26,6 +27,8 @@ class catalog {
         }));
         this.app.use(passport.initialize());
         this.app.use(passport.session());
+        this.app.use(bodyParser.json());
+        this.app.use(bodyParser.urlencoded({ extended: false }));
     }
 
     auth(endpoint, token) {
