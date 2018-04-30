@@ -13,7 +13,7 @@ class catalog {
         this.app.set('view engine', 'pug');
     }
 
-    auth(endpoint) {
+    auth(endpoint, token) {
         this.platform = platform.connect(endpoint, token);
     }
 
