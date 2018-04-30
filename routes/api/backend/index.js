@@ -42,7 +42,7 @@ router.get('/customer/refresh', ensureUser, customer_refresh);
 
 router.get('/customer/loggedin', function (req, res) {
     if (req.user) {
-        require('mkplace-api').client().customer_refresh(req.user.id).then(function(data) {
+        require('../../../platform').client().customer_refresh(req.user.id).then(function(data) {
             return res.send(data.result);
         })
     } else {
