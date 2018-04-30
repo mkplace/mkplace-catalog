@@ -36,8 +36,15 @@ class catalog {
     }
 
     run(port) {
-        // platform api
         this.app.use('/api/backend', api_backend);
+
+        app.get('/store/cart', function (req, res, next) {
+            res.render('checkout');
+        });
+
+        app.get('/store/checkout', function (req, res, next) {
+            res.render('checkout');
+        });
 
         this.app.get('/*', function (req, res, next) {
             res.render('index');
