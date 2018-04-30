@@ -2,6 +2,7 @@ var http = require('http');
 var express = require('express');
 var session = require('express-session')
 var path = require('path');
+var mongoose = require('mongoose');
 var platform = require('./platform');
 var api_backend = require('./routes/api/backend');
 var passport = require('passport');
