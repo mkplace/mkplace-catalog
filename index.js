@@ -30,13 +30,13 @@ class catalog {
         require('./strategies');
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
+    }
 
-        this.app.all('*', function(req, res, next) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "*");
-            next();
-        });
+    auth(endpoint, token) {
+        this.platform = platform.connect(endpoint, token);
+    }
 
+    run(port) {
         this.app.use('/api/backend', api_backend);
 
         this.app.get('/store/cart', function (req, res, next) {
@@ -46,15 +46,8 @@ class catalog {
         this.app.get('/store/checkout', function (req, res, next) {
             res.render('checkout');
         });
-    }
 
-    auth(endpoint, token) {
-        this.platform = platform.connect(endpoint, token);
-    }
-
-    run(port) {
-
-        this.app.get('*', function (req, res, next) {
+        this.app.get('/*', function (req, res, next) {
             res.render('index');
         });
 

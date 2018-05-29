@@ -75,7 +75,7 @@ var ApiGenerator = function (base_url, token) {
                         let str_url = url._get(arrUrl);
                         let url_params = str_url.match(/(?!:\/\/)(?:[:][a-zA-Z_]+)/g);
 
-                        //  @todo make function to parse str param        
+                        //  @todo make function to parse str param
                         Object.keys(urlParams).forEach(function (key) {
                             console.log(key, 'aaaaaaaaaaaaaaaaaaaa')
                             let regex_str = new RegExp(`(?:[:]${key})`, 'g');

@@ -19,7 +19,7 @@ let client = (endpoint, token) => {
   };
 
 
-  /** 
+  /**
    * performs an search in mkplace api
    *  @param term search term
    */
@@ -88,7 +88,7 @@ let client = (endpoint, token) => {
     } else {
       throw Error('session_id or customer_id must be informed');
     }
-    
+
     return connection.cartupdate(o).post();
   };
 
@@ -247,25 +247,19 @@ let client = (endpoint, token) => {
     return connection.reviewcreate(params).post()
   };
 
-  let _customer_retrieve_recovery_token = function (email) {
+  let _customer_retrieve_recovery_token = function ({ email }) {
     if (!email) throw Error('email must be informed');
-    return connection.customer_retrieve_recovery_token(email).post();
+    return connection.customer_retrieve_recovery_token({ email }).post();
   }
 
-  let _customer_change_password = function (token, password, password_confirm) {
-    if (!token) throw Error('token must be informed');
-    if (!password) throw Error('password must be informed');
-    if (!password_confirm) throw Error('password confirm must be informed');
+  let _customer_change_password = function ({ hash_customer, password, confirm_password, step }) {
+    if (!hash_customer) throw Error('hash_customer must be informed');
 
-    if (password !== password_confirm) throw Error('Password does not math the confirm password');
+    if (!password && step != 'validation') throw Error('password must be informed');
 
+    if (!confirm_password && step != 'validation') throw Error('password confirm must be informed');
 
-    let params = {
-      hash_customer: token,
-      password: password,
-      confirm_password: password_confirm
-    };
-    return connection.customer_recovery_password(params).post();
+    return connection.customer_recovery_password({ hash_customer, password, confirm_password, step }).post();
   };
 
   let _customer_wishlist = function (customer_id) {
