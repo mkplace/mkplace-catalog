@@ -1,6 +1,6 @@
 {
     "name": "@mkplace/mkplace-catalog",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "dependencies": {
         "body-parser": "~1.18.2",
         "compression": "^1.7.1",

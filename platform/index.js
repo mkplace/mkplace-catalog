@@ -332,18 +332,24 @@ let client = (endpoint, token) => {
     return connection.shoppingcart(o).delete();
   }
 
-  let _finish_buy = function (hash, shipping_address_id, storecondition_id, customer_id, payment) {
+  let _finish_buy = function (hash, shipping_address_id, storecondition_id, customer_id, payment, client_data) {
+
     let o = {
       hash: hash,
-      shipping_address_id: shipping_address_id,
-      storecondition_id: storecondition_id,
+      storecondition_id: storecondition_id || 0,
       session: {
-        customer_id: customer_id
+        customer_id: customer_id || null
       },
     };
 
     if (payment) {
       o.payment = payment;
+    }
+
+    if (client_data) {
+        o.client_data = client_data;
+    }else{
+        o.shipping_address_id = shipping_address_id;
     }
 
     return connection.finish_buy(o).post();
